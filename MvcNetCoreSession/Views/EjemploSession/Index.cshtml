@@ -1,0 +1,40 @@
+﻿@using MvcNetCoreSession.Helpers
+@{
+	byte[] data = Context.Session.Get("mascota");
+	Mascota mascota = null;
+	if(Context.Session.Get("mascota") != null){
+		 mascota = HelperBinarySession.ByteToObject(data) as Mascota;
+
+	}
+	
+}
+
+<h1>Ejemplos Session</h1>
+<h2 style="color:blue">@Context.Session.GetString("nombre")</h2>
+<h2 style="color:palevioletred">@Context.Session.GetString("hora")</h2>
+@if(mascota !=null){
+	<h2 style="color:greenyellow">@mascota.Nombre</h2>
+}
+
+
+<ul class="list-group">
+	<li class="list-group-item">
+		<a asp-controller="EjemploSession"
+			asp-action="SessionSimple">
+			Session Simple
+		</a>
+	</li>
+	<li class="list-group-item">
+		<a asp-controller="EjemploSession"
+		   asp-action="SessionMascota">
+			Session Mascota
+		</a>
+	</li>
+	<li class="list-group-item">
+		<a asp-controller="EjemploSession"
+		   asp-action="SessionCollection">
+			Session Coleccion
+		</a>
+	</li>
+</ul>
+
